@@ -14,4 +14,4 @@ jobs:
       - name: Build Docker image
         run: docker build -t avrlab .
       - name: Build example
-        run: docker run --rm -v $(PWD):/code avrlab /bin/bash -c "cd src/${{ matrix.example_dir }} && make hex"
+        run: docker run --rm -v $(pwd):/code avrlab /bin/bash -c "cd src/${{ matrix.example_dir }} && make hex"
