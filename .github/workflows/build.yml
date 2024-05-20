@@ -1,0 +1,17 @@
+name: build
+on: push
+
+jobs:
+  build_avr:
+    strategy:
+      matrix:
+        example_dir: ["blink", "timemeas"]
+    name: Build AVR examples
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t avrlab .
+      - name: Build example
+        run: docker run --rm -v $(PWD):/code avrlab /bin/bash -c "cd src/${{ matrix.example_dir }} && make hex"
