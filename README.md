@@ -1,5 +1,7 @@
 # AVR Lab
 
+[![build](https://github.com/duddel/avr-lab/actions/workflows/build.yml/badge.svg)](https://github.com/duddel/avr-lab/actions/workflows/build.yml)
+
 :alien: **Template and Examples in `C` for AVR Microcontrollers, optionally built via Docker.**
 
 -   Using default `gcc-avr` and `avr-libc`, see [Dockerfile](Dockerfile) for details
