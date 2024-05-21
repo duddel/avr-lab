@@ -19,15 +19,22 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-#ifndef TIMEMEAS_H
-#define TIMEMEAS_H
+#ifndef DEBOUNCE_H
+#define DEBOUNCE_H
 
 #include <stdint.h>
 
-// Time [ms] since init
-extern volatile uint32_t timemeas_now;
+typedef struct
+{
+    uint8_t state;
+    uint8_t last_state;
+    uint8_t state_changed;
+    uint32_t delay_time;
+    uint32_t last_change_time;
+} debouncer;
 
-// Initializes time measure
-void timemeas_init(void);
+void debounce_init(debouncer *deb);
+
+void debounce_update(uint8_t state, debouncer *deb);
 
 #endif

@@ -5,32 +5,49 @@
 :alien: **Template and Examples in `C` for AVR Microcontrollers, optionally built via Docker.**
 
 -   Using default `gcc-avr` and `avr-libc`, see [Dockerfile](Dockerfile) for details
+-   Mainly written for `ATtiny85`, if not stated otherwise
 -   Check out the examples in [src/](src/)
 -   Utilize existing code for an own project or start with a basic example
 -   Having Docker in place, the projects can be built with a single command
 
 ## Set up Docker
 
-A Docker installation and basic Docker knowledge is required.
+A Docker installation and basic Docker knowledge is required. Run these commands in the repository root.
 
-1.  Build the Docker image.
+First, build the Docker image (once).
 
 ```bash
 docker build -t avrlab .
 ```
 
-2.  Start container with interactive shell.
+### Build a project
+
+This builds a project in an auto-removing container, from the image created above. **Recommended in most cases.**
+
+```bash
+# Bash
+docker run --rm -v $(pwd):/code avrlab /bin/bash -c "cd src/blink && make hex"
+
+# Powershell
+docker run --rm -v ${PWD}:/code avrlab /bin/bash -c "cd src/blink && make hex"
+```
+
+### Advanced (more Control over Container)
+
+Start container with interactive shell.
 
 ```bash
 # Option 1: Auto-removing container after usage
 # Bash
 docker run --rm -it -v $(pwd):/code avrlab
+
 # Powershell
 docker run --rm -it -v ${PWD}:/code avrlab
 
 # Option 2: Named container
 # Bash
 docker run -it -v $(pwd):/code --name avrlab_01 avrlab
+
 # Powershell
 docker run -it -v ${PWD}:/code --name avrlab_01 avrlab
 
@@ -38,7 +55,7 @@ docker run -it -v ${PWD}:/code --name avrlab_01 avrlab
 docker start -i avrlab_01
 ```
 
-3.  Build a project.
+Build a project.
 
 ```bash
 cd src/blink
@@ -47,7 +64,7 @@ make hex
 
 ## avrdude Example Commands
 
--   Install `avrdude` on host
+-   Install `avrdude` on host (recommended)
 -   Use `stk500v1` compatible ISP (e.g. using Arduino with ISP example sketch)
 
 ### Program
