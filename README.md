@@ -80,6 +80,7 @@ avrdude -p attiny85 -P com3 -c stk500v1 -b 19200 -U flash:w:main.hex
 ```bash
 # Set 1MHz clock
 avrdude -p attiny85 -P com3 -c stk500v1 -b 19200 -U lfuse:w:0x62:m
+
 # Set 8MHz clock
 avrdude -p attiny85 -P com3 -c stk500v1 -b 19200 -U lfuse:w:0xE2:m
 ```
