@@ -29,25 +29,34 @@ void timemeas_init(void)
     // Activate CTC (Clear Timer on Compare) mode
     TCCR0A |= (1 << WGM01); // Timer/Counter Control Register A (TCCR0A)
 
-    // Set Clock Select: I/O Clock divided by 8.
+    // Set Clock Select: I/O Clock divided by 8 or 64.
     // The I/O Clock is the "base clock" (e.g. the internal crystal),
     // divided by the System Clock Prescaler (e.g. set via fuse)
+#if F_CPU == 1000000
     TCCR0B |= (1 << CS01); // Timer/Counter Control Register B (TCCR0B)
+#elif F_CPU == 8000000
+    TCCR0B |= (1 << CS00) | (1 << CS01); // Timer/Counter Control Register B (TCCR0B)
+#else
+#error Time measure is only configured for an I/O Clock of 1MHz or 8MHz
+#endif
 
     // Set output compare value.
     // The value of the Timer/Counter Register (TCNT0) is continuously
     // compared to OCR0A (CTC mode), generating an interrupt on overflow
     // (TIMER0_COMPA_vect). Assumption:
     //  - Internal clock: 8MHz
+
+    // F_CPU == 1000000:
     //  - System Clock Prescaler: 8
     //  - Clock Select: I/O Clock divided by 8 (s. above, CS01 in TCCR0B)
     // -> 8MHz/8/8 = 125kHz -> 125 ticks take 1ms.
+    // F_CPU == 8000000:
+    //  - System Clock Prescaler: 1
+    //  - Clock Select: I/O Clock divided by 64 (s. above, CS00 | CS01 in TCCR0B)
+    // -> 8MHz/1/64 = 125kHz -> 125 ticks take 1ms.
+
     // -> Setting OCR0A to 125-1 = 124 generates an overflow every 1ms.
     OCR0A = 124; // Output Compare Register A (OCR0A)
-
-#if F_CPU != 1000000
-#error OCR0A is set assuming an I/O Clock of 1MHz
-#endif
 
     // Enable Timer/Counter0 Compare Match A interrupt
     TIMSK |= (1 << OCIE0A); // Timer/Counter Interrupt Mask Register (TIMSK)
