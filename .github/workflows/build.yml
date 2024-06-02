@@ -5,7 +5,7 @@ jobs:
   build_avr:
     strategy:
       matrix:
-        example_dir: ["blink", "timemeas", "togglebutton", "sleep_pci", "states"]
+        example_dir: ["blink", "timemeas", "togglebutton", "sleep_pci", "states", "ws2812"]
     name: Build AVR examples
     runs-on: ubuntu-latest
     steps:

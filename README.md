@@ -91,6 +91,22 @@ avrdude -p attiny85 -P com3 -c stk500v1 -b 19200 -U lfuse:w:0xE2:m
 
 ## License
 
--   The source code in this repository is licensed under the [MIT license](LICENSE.txt) (if not stated otherwise)
--   [Makefile_template](Makefile_template) taken from `WinAVR-20100110`. See License in [Makefile_template](Makefile_template)
-    -   Each example project in [src/](src/) contains a `Makefile`, which is an adjusted copy of [Makefile_template](Makefile_template)
+The source code in this repository is licensed under the [MIT license](LICENSE.txt) (if not stated otherwise). For Licenses of thirdparty components, see below.
+   
+## Thirdparty
+
+### Makefile_template
+
+-   origin: `WinAVR-20100110`
+-   license: see [Makefile_template](Makefile_template)
+-   each example project in [src/](src/) contains a `Makefile`, which is an adjusted copy of [Makefile_template](Makefile_template)
+
+### ws2812b_attiny13
+
+-   version: **a98438c**
+-   origin: https://github.com/dsprenkels/ws2812b_attiny13/tree/a98438c8b0572c430f73fb759fdab2607b238586
+-   extracted from origin:
+    -   `LICENSE`
+    -   `ws2812b_attiny13.{c,h}`
+-   modifications are marked with `AVR_LAB`
+-   license: [src/ws2812b_attiny13_LICENSE](src/ws2812b_attiny13_LICENSE)
