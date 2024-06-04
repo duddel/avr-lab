@@ -22,7 +22,14 @@ SOFTWARE.
 #include <stdint.h>
 #include <avr/interrupt.h>
 
-volatile uint32_t timemeas_now = 0;
+volatile uint32_t now = 0;
+volatile uint8_t now_guard = 0;
+
+ISR(TIMER0_COMPA_vect)
+{
+    now_guard = 1;
+    now++;
+}
 
 void timemeas_init(void)
 {
@@ -62,7 +69,13 @@ void timemeas_init(void)
     TIMSK |= (1 << OCIE0A); // Timer/Counter Interrupt Mask Register (TIMSK)
 }
 
-ISR(TIMER0_COMPA_vect)
+uint32_t timemeas_now(void)
 {
-    timemeas_now++;
+    uint32_t ret;
+    do
+    {
+        now_guard = 0;
+        ret = now;
+    } while (now_guard);
+    return ret;
 }

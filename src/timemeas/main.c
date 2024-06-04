@@ -43,7 +43,7 @@ void setup()
 
 void loop()
 {
-    uint32_t now = timemeas_now;
+    uint32_t now = timemeas_now();
     if (now - last_blink > BLINK_DELAY_MS)
     {
         // Invert pin

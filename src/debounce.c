@@ -33,7 +33,7 @@ void debounce_init(debouncer *deb)
 
 void debounce_update(uint8_t state, debouncer *deb)
 {
-    uint32_t now = timemeas_now;
+    uint32_t now = timemeas_now();
 
     deb->state_changed = 0;
 

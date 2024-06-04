@@ -70,7 +70,7 @@ int main(void)
     debounce_init(&button_deb);
 
     // Time of last toggle
-    uint32_t lastToggleTime = timemeas_now;
+    uint32_t lastToggleTime = timemeas_now();
 
     while (1)
     {
@@ -105,17 +105,17 @@ int main(void)
         switch (state)
         {
         case STATE_SLOW:
-            if (timemeas_now - lastToggleTime > TOGGLE_DELAY_SLOW)
+            if (timemeas_now() - lastToggleTime > TOGGLE_DELAY_SLOW)
             {
                 PORTB ^= (1 << PB1);
-                lastToggleTime = timemeas_now;
+                lastToggleTime = timemeas_now();
             }
             break;
         case STATE_FAST:
-            if (timemeas_now - lastToggleTime > TOGGLE_DELAY_FAST)
+            if (timemeas_now() - lastToggleTime > TOGGLE_DELAY_FAST)
             {
                 PORTB ^= (1 << PB1);
-                lastToggleTime = timemeas_now;
+                lastToggleTime = timemeas_now();
             }
             break;
         }

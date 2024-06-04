@@ -24,10 +24,10 @@ SOFTWARE.
 
 #include <stdint.h>
 
-// Time [ms] since init
-extern volatile uint32_t timemeas_now;
-
 // Initializes time measure
 void timemeas_init(void);
+
+// Returns time [ms] since init
+uint32_t timemeas_now(void);
 
 #endif
