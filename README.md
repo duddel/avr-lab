@@ -10,6 +10,28 @@
 -   Utilize existing code for an own project or start with a basic example
 -   Having Docker in place, the projects can be built with a single command
 
+## Examples and Helper Modules
+
+Example projects, roughly sorted by complexity.
+
+| Example      | Code                                               | Info                                           |
+| ------------ | -------------------------------------------------- | ---------------------------------------------- |
+| blink        | [src/blink/main.c](src/blink/main.c)               | Hello world blink example                      |
+| timemeas     | [src/timemeas/main.c](src/timemeas/main.c)         | No delay blink example using time measure      |
+| togglebutton | [src/togglebutton/main.c](src/togglebutton/main.c) | Debounced button input                         |
+| states       | [src/states/main.c](src/states/main.c)             | Simple state logic with debounced button input |
+| sleep_pci    | [src/sleep_pci/main.c](src/sleep_pci/main.c)       | Sleep and wake-up via pin change interrupt     |
+| ws2812       | [src/ws2812/main.c](src/ws2812/main.c)             | WS2812B control via Bit-Banging                |
+
+Helper modules.
+
+| Module           | API                                              | Code                                             | Info                                                         |
+| ---------------- | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------ |
+| debounce         | [src/debounce.h](src/debounce.h)                 | [src/debounce.c](src/debounce.c)                 | Button debouncer                                             |
+| timemeas         | [src/timemeas.h](src/timemeas.h)                 | [src/timemeas.c](src/timemeas.c)                 | Time measurement                                             |
+| ws2812b_attiny13 | [src/ws2812b_attiny13.h](src/ws2812b_attiny13.h) | [src/ws2812b_attiny13.c](src/ws2812b_attiny13.c) | WS2812B interface. 3rd party, see [below](#ws2812b_attiny13) |
+| zzz              | [src/zzz.h](src/zzz.h)                           | [src/zzz.c](src/zzz.c)                           | Power down sleep mode                                        |
+
 ## Set up Docker
 
 A Docker installation and basic Docker knowledge is required. Run these commands in the repository root.
