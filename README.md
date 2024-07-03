@@ -14,14 +14,15 @@
 
 Example projects, roughly sorted by complexity.
 
-| Example      | Code                                               | Info                                           |
-| ------------ | -------------------------------------------------- | ---------------------------------------------- |
-| blink        | [src/blink/main.c](src/blink/main.c)               | Hello world blink example                      |
-| timemeas     | [src/timemeas/main.c](src/timemeas/main.c)         | No delay blink example using time measure      |
-| togglebutton | [src/togglebutton/main.c](src/togglebutton/main.c) | Debounced button input                         |
-| states       | [src/states/main.c](src/states/main.c)             | Simple state logic with debounced button input |
-| sleep_pci    | [src/sleep_pci/main.c](src/sleep_pci/main.c)       | Sleep and wake-up via pin change interrupt     |
-| ws2812       | [src/ws2812/main.c](src/ws2812/main.c)             | WS2812B control via Bit-Banging                |
+| Example      | Code                                               | Info                                                     |
+| ------------ | -------------------------------------------------- | -------------------------------------------------------- |
+| blink        | [src/blink/main.c](src/blink/main.c)               | Hello world blink example                                |
+| timemeas     | [src/timemeas/main.c](src/timemeas/main.c)         | No delay blink example using time measure                |
+| togglebutton | [src/togglebutton/main.c](src/togglebutton/main.c) | Debounced button input                                   |
+| states       | [src/states/main.c](src/states/main.c)             | Simple state logic with debounced button input           |
+| sleep_pci    | [src/sleep_pci/main.c](src/sleep_pci/main.c)       | Sleep and wake-up via pin change interrupt               |
+| ws2812       | [src/ws2812/main.c](src/ws2812/main.c)             | WS2812B control via Bit-Banging                          |
+| moodlight    | [src/moodlight/main.c](src/moodlight/main.c)       | Multiple WS2812B light sequences, switchable, auto-sleep |
 
 Helper modules.
 
