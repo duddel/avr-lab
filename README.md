@@ -31,7 +31,6 @@ Helper modules.
 | debounce         | [src/debounce.h](src/debounce.h)                 | [src/debounce.c](src/debounce.c)                 | Button debouncer                                             |
 | timemeas         | [src/timemeas.h](src/timemeas.h)                 | [src/timemeas.c](src/timemeas.c)                 | Time measurement                                             |
 | ws2812b          | [src/ws2812b.h](src/ws2812b.h)                   | [src/ws2812b.c](src/ws2812b.c)                   | WS2812B interface                                            |
-| ws2812b_attiny13 | [src/ws2812b_attiny13.h](src/ws2812b_attiny13.h) | [src/ws2812b_attiny13.c](src/ws2812b_attiny13.c) | WS2812B interface. 3rd party, see [below](#ws2812b_attiny13) |
 | zzz              | [src/zzz.h](src/zzz.h)                           | [src/zzz.c](src/zzz.c)                           | Power down sleep mode                                        |
 
 ## Set up Docker
@@ -124,13 +123,3 @@ The source code in this repository is licensed under the [MIT license](LICENSE.t
 -   origin: `WinAVR-20100110`
 -   license: see [Makefile_template](Makefile_template)
 -   each example project in [src/](src/) contains a `Makefile`, which is an adjusted copy of [Makefile_template](Makefile_template)
-
-### ws2812b_attiny13
-
--   version: **a98438c**
--   origin: https://github.com/dsprenkels/ws2812b_attiny13/tree/a98438c8b0572c430f73fb759fdab2607b238586
--   extracted from origin:
-    -   `LICENSE`
-    -   `ws2812b_attiny13.{c,h}`
--   modifications are marked with `AVR_LAB`
--   license: [src/ws2812b_attiny13_LICENSE](src/ws2812b_attiny13_LICENSE)
