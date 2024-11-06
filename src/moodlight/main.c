@@ -23,7 +23,7 @@ SOFTWARE.
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#include "../ws2812b_attiny13.h"
+#include "../ws2812b.h"
 #include "../zzz.h"
 #include "../timemeas.h"
 #include "../debounce.h"
@@ -64,17 +64,15 @@ const mode modes[] = {
 
 const uint8_t num_modes = sizeof(modes) / sizeof(modes[0]);
 
-// Used by ws2812b_set_color_no_reset() to set DDRB and
-// the actual data bit values in PORTB
-const uint8_t led_pin_mask = (1 << PB1);
-
 ISR(PCINT0_vect) {}
 
 void prepare_sleep(void)
 {
     for (uint8_t i = 0; i < NUM_LED; i++)
     {
-        ws2812b_set_color_no_reset(led_pin_mask, 0, 0, 0);
+        ws2812b_bang_byte(PB1, 0);
+        ws2812b_bang_byte(PB1, 0);
+        ws2812b_bang_byte(PB1, 0);
     }
 }
 
@@ -170,10 +168,9 @@ int main(void)
         {
             uint8_t framei = ((uint8_t)(frame) + i) % modes[current_mode_idx].seq_len;
 
-            ws2812b_set_color_no_reset(led_pin_mask,
-                                       palette[modes[current_mode_idx].seq[framei]][0],
-                                       palette[modes[current_mode_idx].seq[framei]][1],
-                                       palette[modes[current_mode_idx].seq[framei]][2]);
+            ws2812b_bang_byte(PB1, palette[modes[current_mode_idx].seq[framei]][0]);
+            ws2812b_bang_byte(PB1, palette[modes[current_mode_idx].seq[framei]][1]);
+            ws2812b_bang_byte(PB1, palette[modes[current_mode_idx].seq[framei]][2]);
         }
 
         _delay_ms(10);

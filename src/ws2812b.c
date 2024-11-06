@@ -19,10 +19,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+#include <avr/io.h>
 #include <stdint.h>
 
-void ws2812b_bang_byte(const uint8_t data)
+// 0x18 = PORTB
+void ws2812b_bang_byte(const uint8_t portb_pin, const uint8_t data)
 {
+    const uint8_t pb = PORTB;
+    const uint8_t pb_hi = (pb | (1 << portb_pin));
+    const uint8_t pb_lo = (pb & ~(1 << portb_pin));
+
     __asm__ volatile(
         // Prepare first bit
         "ldi r17,0x80\n"
@@ -32,13 +38,14 @@ void ws2812b_bang_byte(const uint8_t data)
         "rjmp .send_zero\n"
 
         ".send_one:\n"
-        "sbi 0x18,1\n"
+        "out 0x18,%[pb_hi]\n"
         "nop\n"
         "nop\n"
         "nop\n"
         "nop\n"
         "nop\n"
-        "cbi 0x18,1\n"
+        "nop\n"
+        "out 0x18,%[pb_lo]\n"
         "nop\n"
 
         // Prepare next bit
@@ -50,9 +57,11 @@ void ws2812b_bang_byte(const uint8_t data)
         // "rjmp .send_zero\n"
 
         ".send_zero:\n"
-        "sbi 0x18,1\n"
+        "out 0x18,%[pb_hi]\n"
         "nop\n"
-        "cbi 0x18,1\n"
+        "nop\n"
+        "out 0x18,%[pb_lo]\n"
+        "nop\n"
         "nop\n"
         "nop\n"
         "nop\n"
@@ -69,7 +78,7 @@ void ws2812b_bang_byte(const uint8_t data)
 
         ".done:\n"
 
-        :                  // outputs
-        : [data] "r"(data) // inputs
-        : "r16", "r17");   // clobbered registers
+        :                                                          // outputs
+        : [pb_hi] "r"(pb_hi), [pb_lo] "r"(pb_lo), [data] "r"(data) // inputs
+        : "r16", "r17");                                           // clobbered registers
 }

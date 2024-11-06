@@ -29,6 +29,6 @@ SOFTWARE.
 #endif
 
 // Sends a single byte (color value) via ws2812b protocol
-void ws2812b_bang_byte(const uint8_t data);
+void ws2812b_bang_byte(const uint8_t portb_pin, const uint8_t data);
 
 #endif

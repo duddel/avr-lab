@@ -80,7 +80,7 @@ OBJDIR = .
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c ../zzz.c ../timemeas.c ../debounce.c ../ws2812b_attiny13.c
+SRC = $(TARGET).c ../zzz.c ../timemeas.c ../debounce.c ../ws2812b.c
 
 
 # List C++ source files here. (C dependencies are automatically generated.)

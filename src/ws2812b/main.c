@@ -48,9 +48,9 @@ int main(void)
         for (uint8_t i = 0; i < NUM_LED; i++)
         {
             uint8_t seq = sequence[(sequence0 + i) % len_sequence];
-            ws2812b_bang_byte(palette[seq][0]);
-            ws2812b_bang_byte(palette[seq][1]);
-            ws2812b_bang_byte(palette[seq][2]);
+            ws2812b_bang_byte(PB1, palette[seq][0]);
+            ws2812b_bang_byte(PB1, palette[seq][1]);
+            ws2812b_bang_byte(PB1, palette[seq][2]);
         }
 
         sequence0 = (sequence0 + 1) % len_sequence;
