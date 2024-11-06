@@ -20,42 +20,56 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 #include <stdint.h>
-#include <avr/io.h>
-#include <util/delay.h>
-#include "../ws2812b_attiny13.h"
 
-#define NUM_LED 24
-
-const uint8_t palette[6][3] = {
-    {63, 0, 0},
-    {63, 11, 0},
-    {63, 63, 0},
-    {0, 63, 0},
-    {6, 17, 36},
-    {16, 0, 39}};
-
-const uint8_t sequence[] = {0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5};
-const uint8_t len_sequence = 12;
-
-// Used by ws2812b_set_color_no_reset() to set DDRB and
-// the actual data bit values in PORTB
-const uint8_t led_pin_mask = (1 << PB1);
-
-int main(void)
+void ws2812b_bang_byte(const uint8_t data)
 {
-    uint8_t sequence0 = 0;
-    while (1)
-    {
-        // Bit-Banging. No fancy calculations in this loop!
-        for (uint8_t i = 0; i < NUM_LED; i++)
-        {
-            ws2812b_set_color_no_reset(led_pin_mask,
-                                       palette[sequence[(sequence0 + i) % len_sequence]][0],
-                                       palette[sequence[(sequence0 + i) % len_sequence]][1],
-                                       palette[sequence[(sequence0 + i) % len_sequence]][2]);
-        }
+    __asm__ volatile(
+        // Prepare first bit
+        "ldi r17,0x80\n"
+        "mov r16,%[data]\n"
+        "and r16,r17\n"
+        "brne .send_one\n"
+        "rjmp .send_zero\n"
 
-        sequence0 = (sequence0 + 1) % len_sequence;
-        _delay_ms(100);
-    }
+        ".send_one:\n"
+        "sbi 0x18,1\n"
+        "nop\n"
+        "nop\n"
+        "nop\n"
+        "nop\n"
+        "nop\n"
+        "cbi 0x18,1\n"
+        "nop\n"
+
+        // Prepare next bit
+        "lsr r17\n"
+        "brcs .done\n"
+        "mov r16,%[data]\n"
+        "and r16,r17\n"
+        "brne .send_one\n"
+        // "rjmp .send_zero\n"
+
+        ".send_zero:\n"
+        "sbi 0x18,1\n"
+        "nop\n"
+        "cbi 0x18,1\n"
+        "nop\n"
+        "nop\n"
+        "nop\n"
+        "nop\n"
+        "nop\n"
+
+        // Prepare next bit
+        "lsr r17\n"
+        "brcs .done\n"
+        "mov r16,%[data]\n"
+        "and r16,r17\n"
+        "brne .send_one\n"
+        "rjmp .send_zero\n"
+
+        ".done:\n"
+
+        :                  // outputs
+        : [data] "r"(data) // inputs
+        : "r16", "r17");   // clobbered registers
 }

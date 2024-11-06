@@ -21,7 +21,7 @@ Example projects, roughly sorted by complexity.
 | togglebutton | [src/togglebutton/main.c](src/togglebutton/main.c) | Debounced button input                                   |
 | states       | [src/states/main.c](src/states/main.c)             | Simple state logic with debounced button input           |
 | sleep_pci    | [src/sleep_pci/main.c](src/sleep_pci/main.c)       | Sleep and wake-up via pin change interrupt               |
-| ws2812       | [src/ws2812/main.c](src/ws2812/main.c)             | WS2812B control via Bit-Banging                          |
+| ws2812b      | [src/ws2812b/main.c](src/ws2812b/main.c)           | WS2812B control via Bit-Banging                          |
 | moodlight    | [src/moodlight/main.c](src/moodlight/main.c)       | Multiple WS2812B light sequences, switchable, auto-sleep |
 
 Helper modules.
@@ -30,6 +30,7 @@ Helper modules.
 | ---------------- | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------ |
 | debounce         | [src/debounce.h](src/debounce.h)                 | [src/debounce.c](src/debounce.c)                 | Button debouncer                                             |
 | timemeas         | [src/timemeas.h](src/timemeas.h)                 | [src/timemeas.c](src/timemeas.c)                 | Time measurement                                             |
+| ws2812b          | [src/ws2812b.h](src/ws2812b.h)                   | [src/ws2812b.c](src/ws2812b.c)                   | WS2812B interface                                            |
 | ws2812b_attiny13 | [src/ws2812b_attiny13.h](src/ws2812b_attiny13.h) | [src/ws2812b_attiny13.c](src/ws2812b_attiny13.c) | WS2812B interface. 3rd party, see [below](#ws2812b_attiny13) |
 | zzz              | [src/zzz.h](src/zzz.h)                           | [src/zzz.c](src/zzz.c)                           | Power down sleep mode                                        |
 
