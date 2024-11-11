@@ -24,10 +24,6 @@ SOFTWARE.
 
 #include <stdint.h>
 
-#if F_CPU != 8000000UL
-#error ws2812b protocol only implemented for 8MHz
-#endif
-
 // Sends a single byte (color value) via ws2812b protocol
 void ws2812b_bang_byte(const uint8_t portb_pin, const uint8_t data);
 

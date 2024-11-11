@@ -39,14 +39,14 @@ typedef struct
 } mode;
 
 const uint8_t palette[][3] = {
-    {63, 0, 0},  // Red
-    {63, 11, 0}, // Orange
+    {63, 0, 0},  // Green
     {63, 63, 0}, // Yellow
-    {0, 63, 0},  // Green
-    {6, 17, 36}, // Blue
-    {16, 0, 39}, // Purple
-    {22, 0, 22}, // Pink
-    {0, 22, 22}  // Turquoise
+    {25, 63, 0}, // Orange
+    {0, 63, 0},  // Red
+    {0, 22, 22}, // Pink
+    {16, 0, 39}, // Blue
+    {6, 17, 36}, // Purple
+    {22, 0, 22}  // Turquoise
 };
 
 uint8_t sequence_0[] = {0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5};

@@ -93,7 +93,7 @@ make hex
 ### Program
 
 ```bash
-avrdude -p attiny85 -P com3 -c stk500v1 -b 19200 -U flash:w:main.hex
+avrdude -p attiny85 -P com3 -c stk500v1 -b 19200 -U flash:w:src/blink/main.hex
 ```
 
 ### Fuses

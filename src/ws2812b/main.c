@@ -27,12 +27,13 @@ SOFTWARE.
 #define NUM_LED 24
 
 const uint8_t palette[][3] = {
-    {63, 0, 0},
-    {63, 11, 0},
-    {63, 63, 0},
-    {0, 63, 0},
-    {6, 17, 36},
-    {16, 0, 39}};
+    {63, 0, 0},  // Green
+    {63, 63, 0}, // Yellow
+    {25, 63, 0}, // Orange
+    {0, 63, 0},  // Red
+    {0, 22, 22}, // Pink
+    {16, 0, 39}, // Blue
+};
 
 const uint8_t sequence[] = {0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5};
 const uint8_t len_sequence = 12;
