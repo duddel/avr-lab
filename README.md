@@ -21,17 +21,18 @@ Example projects, roughly sorted by complexity.
 | togglebutton | [src/togglebutton/main.c](src/togglebutton/main.c) | Debounced button input                                   |
 | states       | [src/states/main.c](src/states/main.c)             | Simple state logic with debounced button input           |
 | sleep_pci    | [src/sleep_pci/main.c](src/sleep_pci/main.c)       | Sleep and wake-up via pin change interrupt               |
+| pwm          | [src/pwm/main.c](src/pwm/main.c)                   | PWM signal with Timer/Counter0,1                         |
 | ws2812b      | [src/ws2812b/main.c](src/ws2812b/main.c)           | WS2812B control via Bit-Banging                          |
 | moodlight    | [src/moodlight/main.c](src/moodlight/main.c)       | Multiple WS2812B light sequences, switchable, auto-sleep |
 
 Helper modules.
 
-| Module           | API                                              | Code                                             | Info                                                         |
-| ---------------- | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------ |
-| debounce         | [src/debounce.h](src/debounce.h)                 | [src/debounce.c](src/debounce.c)                 | Button debouncer                                             |
-| timemeas         | [src/timemeas.h](src/timemeas.h)                 | [src/timemeas.c](src/timemeas.c)                 | Time measurement                                             |
-| ws2812b          | [src/ws2812b.h](src/ws2812b.h)                   | [src/ws2812b.c](src/ws2812b.c)                   | WS2812B interface                                            |
-| zzz              | [src/zzz.h](src/zzz.h)                           | [src/zzz.c](src/zzz.c)                           | Power down sleep mode                                        |
+| Module   | API                              | Code                             | Info                                  |
+| -------- | -------------------------------- | -------------------------------- | ------------------------------------- |
+| debounce | [src/debounce.h](src/debounce.h) | [src/debounce.c](src/debounce.c) | Button debouncer                      |
+| timemeas | [src/timemeas.h](src/timemeas.h) | [src/timemeas.c](src/timemeas.c) | Time measurement using Timer/Counter0 |
+| ws2812b  | [src/ws2812b.h](src/ws2812b.h)   | [src/ws2812b.c](src/ws2812b.c)   | WS2812B interface                     |
+| zzz      | [src/zzz.h](src/zzz.h)           | [src/zzz.c](src/zzz.c)           | Power down sleep mode                 |
 
 ## Set up Docker
 
