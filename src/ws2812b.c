@@ -65,8 +65,7 @@ void ws2812b_bang_byte(const uint8_t portb_pin, const uint8_t data)
         "ldi r17,0b10000000\n" // Mask for detecting bit to be sent. Initial value for bit 7
         "mov r16,%[data]\n"
         "and r16,r17\n" // Result is stored in r16
-        "brne .send_one\n"
-        "rjmp .send_zero\n"
+        "breq .send_zero\n"
 
         ".send_one:\n"
         "out 0x18,%[pb_hi]\n" // Set HIGH
