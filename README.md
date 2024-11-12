@@ -24,6 +24,7 @@ Example projects, roughly sorted by complexity.
 | pwm          | [src/pwm/main.c](src/pwm/main.c)                   | PWM signal with Timer/Counter0,1                         |
 | ws2812b      | [src/ws2812b/main.c](src/ws2812b/main.c)           | WS2812B control via Bit-Banging                          |
 | moodlight    | [src/moodlight/main.c](src/moodlight/main.c)       | Multiple WS2812B light sequences, switchable, auto-sleep |
+| hot_wire     | [src/hot_wire/main.c](src/hot_wire/main.c)         | Simple hot wire game                                     |
 
 Helper modules.
 
